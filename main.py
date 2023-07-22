@@ -15,4 +15,4 @@ if response.status_code == 200:
     print(f"Temperature: {round(temp - 273)} C")
     print(f"Description: {desc}")
 else:
-    print('Error fetching weather data')
+    print("404 Error Place Not Found !! Try Again")
