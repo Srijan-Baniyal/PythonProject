@@ -12,7 +12,7 @@ if response.status_code == 200:
     data = response.json()
     temp = data["main"]["temp"]
     desc = data["weather"][0]["description"]
-    print(f"Temperature: {round(temp - 273)} C")
-    print(f"Description: {desc}")
+    print(f"Temperature: {round(temp - 273)}*C")
+    print(f"Description: {desc.capitalize()}")
 else:
     print("404 Error Place Not Found !! Try Again")
