@@ -6,15 +6,23 @@ url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit=1&appid
 
 response = requests.get(url)
 
-if (response.status_code == 200):
-    data = response.json()
-    lat = data[0]["lat"]
-    lon = data[0]["lon"]
-    country = data[0]["country"]
-    state = data[0]["state"]
-    print(f"Latitude: {abs(lat)}")
-    print(f"Longitude: {abs(lon)}")
-    print(f"Country: {country}")
-    print(f"State: {state}")
-else:
-    print("404 Error Place Not Found !! Try Again")
+try:
+    if (response.status_code == 200):
+        data = response.json()
+        lat = data[0]["lat"]
+        lon = data[0]["lon"]
+        country = data[0]["country"]
+        state = data[0]["state"]
+        print(f"Latitude: {abs(lat)}")
+        print(f"Longitude: {abs(lon)}")
+        print(f"Country: {country}")
+        print(f"State: {state}")
+except:
+    if (response.status_code == 200):
+        data = response.json()
+        lat = data[0]["lat"]
+        lon = data[0]["lon"]
+        country = data[0]["country"]
+        print(f"Latitude: {abs(lat)}")
+        print(f"Longitude: {abs(lon)}")
+        print(f"Country: {country}")
