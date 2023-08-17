@@ -19,9 +19,24 @@ if (firstStage == 1):
     elif (aqi == 4):
         print(f"Air quality of {np} is {aqi }Poor")
     elif (aqi == 5):
-        print(f"Air quality of {np} is {aqi} Very Poor")        
+        print(f"Air quality of {np} is {aqi} Very Poor")
 elif (firstStage == 2):
-    print("2")
+    print("...............................")
+    print("Ok you have entered Statistical Weather Data option")
+    print("You have 3 options \n 1.Yearly \n 2.Monthly \n 3.Daily")
+    var = int(input("Enter the number of the choice you want ot proceed with: "))
+    if (var == 1):
+        np = cf.UserInput()
+        lat, long = AP.LatAndLong(np)
+        ml = AP.StatsAirYearlyProgression(lat, long)
+        print(ml)
+    elif (var == 2):
+        print("b")
+    elif (var == 3):
+        print("c")
+    else:
+        print("You are entering wrong option try again")
+
 elif (firstStage == 3):
     print("3")
 elif (firstStage == 4):

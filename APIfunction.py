@@ -37,3 +37,13 @@ def AirPollution(lat, long):
         return data["list"][0]["main"]["aqi"], data["list"][0]["components"]
     else:
         print("Look like something went wrong in my end try again")
+
+
+def StatsAirYearlyProgression(lat, lon):
+    url = f"http://history.openweathermap.org/data/2.5/aggregated/year?lat={lat}&lon={lon}&appid=5979ac965bd6b9af8edf18bfb013c660"
+    response = requests.get(url)
+    if (response.status_code == 200):
+        data = response.json()
+        return data
+    else:
+        print("Look like something went wrong in my end try again")
