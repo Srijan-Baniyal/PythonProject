@@ -3,6 +3,9 @@ import pandas as pd
 import random as rn
 import sys
 import matplotlib.pyplot as plt
+from rich import print, pretty as po
+
+po.install()
 
 
 df = pd.read_csv("WCDSV.csv")
