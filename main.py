@@ -11,8 +11,8 @@ pd.set_option("display.max_columns", None)
 
 def menu():
     ans = True
-    print("----Welcome to World game Analysis System----")
-    print("1.Data Visualization \n 2.Data Analysis \n 3.Data Manipulation \n 4.Exit")
+    print("-----Welcome to World Game Analysis System-----")
+    print(" 1.Data Visualization \n 2.Data Analysis \n 3.Data Manipulation \n 4.Exit")
     inp = int(input("Enter you choice: "))
     if inp == 1:
         dvisual()
@@ -32,7 +32,7 @@ def menu():
 def dvisual():
     ans = True
     while ans:
-        print("----Data Visualization of top 10 Countries---- \n 1.Line Chart-> Countries vs Total Medals \n 2.Bar Chart -> Countries vs Total Number of GOld Medals \n 3.Bar Chart-> Countries vs Total number of Silver Medal \n 4.Bar Chart-> Countries Total number of Bronze Medal \n 5.Histogram -> Countries getting Gold , Silver and Bronze in a given range \n 6.Exit ti Main Menu----")
+        print("----Data Visualization of top 10 Countries---- \n 1.Line Chart-> Countries vs Total Medals \n 2.Bar Chart-> Countries vs Total Number of Gold Medals \n 3.Bar Chart-> Countries vs Total number of Silver Medal \n 4.Bar Chart-> Countries Total number of Bronze Medal \n 5.Histogram-> Countries getting Gold,Silver and Bronze in a given range \n 6.Exit to Main Menu")
         ans = int(input("please enter your choice :  "))
         if ans == 1:
             lchart1()
@@ -61,8 +61,8 @@ def lchart1():
     plt.plot(Countries, TotalMedals, linestyle=":", color="green", marker=".")
     x = np.arange(len(Countries))
     plt.xticks(x, Countries, rotation=30)
-    plt.xlabel("Country",fontsize=12,color="red")
-    plt.ylabel("Total Medals" , fontsize=12 , color="red")
+    plt.xlabel("Country", fontsize=12, color="red")
+    plt.ylabel("Total Medals", fontsize=12, color="red")
     plt.title("Total Medals won by top 10 Countries",
               color="blue", fontsize=18)
     plt.show()
@@ -78,10 +78,10 @@ def bchart1():
     plt.bar(x+0.25, totalGold, width=.6,
             label="Total number of gold Medals by top 10 countries", color="gold")
     plt.xticks(x, Countries, rotation=30)
-    plt.title("World Gold MEdal Analysis of top 10 Countries",
+    plt.title("World Gold Medal Analysis of top 10 Countries",
               color="blue", fontsize=12)
-    plt.xlabel("Countries -> ", fontsize=12, color="red")
-    plt.ylabel("Number of Gold Medals ->", fontsize=12, color="red")
+    plt.xlabel("Countries", fontsize=12, color="red")
+    plt.ylabel("Number of Gold Medals", fontsize=12, color="red")
     plt.grid()
     plt.legend()
     plt.show()
@@ -99,8 +99,8 @@ def bchart2():
     plt.xticks(x, Countries, rotation=30)
     plt.title("World Silver Medal ANalysis of Top 10 Countries",
               color="blue", fontsize=16)
-    plt.xlabel("Countries ->")
-    plt.ylabel("Number of Silver Medal ->", fontsize=12, color="red")
+    plt.xlabel("Countries")
+    plt.ylabel("Number of Silver Medal", fontsize=12, color="red")
     plt.grid()
     plt.legend()
     plt.show()
@@ -118,8 +118,8 @@ def bchart3():
     plt.xticks(x, Countries, rotation=30)
     plt.title("World Bronze Medal Analysis of top 10 Countries",
               color="blue", fontsize=16)
-    plt.xlabel("Countries ->", fontsize=12, color="red")
-    plt.ylabel("Number of Bronze Medals ->", fontsize=12, color="red")
+    plt.xlabel("Countries", fontsize=12, color="red")
+    plt.ylabel("Number of Bronze Medals", fontsize=12, color="red")
     plt.grid()
     plt.legend()
     plt.show()
@@ -132,10 +132,10 @@ def dhistogram():
     b = df["Bronze"]
     clm = ["Bronze", "Silver", "Gold"]
     plt.hist([b, s, g], rwidth=0.9, color=[
-             "brown", "silver", "gold"], label="clm")
+             "brown", "silver", "gold"], label=clm)
     plt.title("World Game Medal Analysis")
-    plt.xlabel("Number of Medals ->", fontsize=12, color="red")
-    plt.ylabel("Number of Countries ->", fontsize=12, color="red")
+    plt.xlabel("Number of Medals", fontsize=12, color="red")
+    plt.ylabel("Number of Countries", fontsize=12, color="red")
     plt.grid()
     plt.legend()
     plt.show()
@@ -143,10 +143,10 @@ def dhistogram():
 
 def danalysis():
     while True:
-        print("----DataFrame Analysis----")
-        print("1.Print Records of Top Countries In Terms Of Total Medal Won  \n 2.Print Records Of Top Countries In Terms Of Total Gold Medal Won \n 3.Print Records of Top Countries Of In Terms of Total Silver Medal Won \n 4.Print Records of Top Countries In Terms of Total Bronze Medal \n 5.Print Records of Bottom Most Countries In Terms of Medal Won \n 6.Print The General Information About The DataFrame used for Analysis. \n 7.Describe The Structure Of The DataFrame used for analysis \n 8.Print THe Data of Column Specified By User. \n 9.Print Maximum Value for Each Column In The DataFrame. \n 10.Display Gold,Silver,and Bronze medals won by a Specific Country \n 11.To GO BAck To The Main Menu")
+        print("-----DataFrame Analysis-----")
+        print(" 1.Print Records of Top Countries In Terms Of Total Medal Won  \n 2.Print Records Of Top Countries In Terms Of Total Gold Medal Won \n 3.Print Records of Top Countries In Terms of Total Silver Medal Won \n 4.Print Records of Top Countries In Terms of Total Bronze Medal Won \n 5.Print Records of Bottom Most Countries In Terms of Medal Won \n 6.Print The General Information About The DataFrame used for Analysis \n 7.Describe The Structure Of The DataFrame used for analysis \n 8.Print The Data of Column Specified By User. \n 9.Print Maximum Value for Each Column In The DataFrame. \n 10.Display Gold,Silver,and Bronze medals won by a Specific Country \n 11.Back To The Main Menu")
         x = int(input("Enter you Choice: "))
-        print(f"{x} Commanding The Chain")
+        print(f"{x}. Giving Command to the Function ")
         df = pd.read_csv("WCDSV.csv")
         if x == 1:
             df = df.loc[:, ["Team", "TotalMedals"]]
@@ -165,7 +165,7 @@ def danalysis():
             print("----####----")
         elif x == 3:
             df = df.sort_values("Silver", ascending=False, ignore_index=True)
-            df = df.loc[:,["Team", "Silver"]]
+            df = df.loc[:, ["Team", "Silver"]]
             nor = int(input("Enter the number of Records to be displayed : "))
             print(f"Top {nor} record by total number of silver medals")
             print("----####----")
@@ -226,11 +226,11 @@ def danalysis():
 
 
 def dmanup():
-    df = pd.read_Csv("WCDSV.csv")
+    df = pd.read_csv("WCDSV.csv")
     ans = True
     while ans:
         print("----Data Manipulation----")
-        print("1.Inserting a Row \n 2.Deleting a Row \n 3.Inserting a column \n 4.Deleting a column \n 5.Renaming a column 6.Exit to Main Menu")
+        print(" 1.Inserting a Row \n 2.Deleting a Row \n 3.Inserting a column \n 4.Deleting a column \n 5.Renaming a column \n 6.Exit to Main Menu")
         ans = int(input("Enter Your Choice: "))
         pd.set_option("display.max_columns", None)
         if ans == 1:
