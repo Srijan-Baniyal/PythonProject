@@ -3,20 +3,42 @@ import pandas as pd
 import random as rn
 import sys
 import matplotlib.pyplot as plt
-from rich import print, pretty as po
+from rich.console import Console
+from colorama import Fore, init
+import colorama
 
-po.install()
-
+console = Console()
+colorama.init()
 
 df = pd.read_csv("WCDSV.csv")
 pd.set_option("display.max_columns", None)
+RED = "\x1b[1;31;40m"
+
+
+
+def hook(tp, *args):
+    if tp is KeyboardInterrupt:
+        print(colorama.Fore.RESET)
+        exit()
+
+
+def colored_input(text: str, color):
+    sys.excepthook = hook
+    inp = input(text + color)
+    print(colorama.Fore.RESET, end="", flush=True)
+    sys.excepthook = sys.__excepthook__
+    return inp
 
 
 def menu():
     ans = True
-    print("-----Welcome to World Game Analysis System-----")
-    print(" 1.Data Visualization \n 2.Data Analysis \n 3.Data Manipulation \n 4.Exit")
-    inp = int(input("Enter you choice: "))
+    console.print(
+        "----- Welcome to World Game Analysis System -----", style="green4")
+    console.print("-----#####-----", style="red1")
+    console.print(
+        " [green]1.Data Visualization[/] \n [yellow]2.Data Analysis[/] \n [deep_pink4]3.Data Manipulation[/] \n [purple]4.Exit[/]")
+    console.print("-----#####-----", style="red1")
+    inp = int(colored_input(f"{RED}Enter you choice: ", colorama.Fore.GREEN))
     if inp == 1:
         dvisual()
     elif inp == 2:
@@ -24,19 +46,23 @@ def menu():
     elif inp == 3:
         dmanup()
     elif inp == 4:
-        ex = str(input("Are you sure you want to exit ? {y/n}"))
+        ex = str(colored_input(
+            "Are you sure you want to exit ? {y/n}: ", colorama.Fore.RED))
         if ex == "y" or ex == "Y":
-            print("Exiting now >>>>> Done !!!")
+            console.print("Exiting now >>>>> Done !!!", style="green4")
             sys.exit()
         else:
-            print("Invalid Input Try Again")
+            menu()
 
 
 def dvisual():
     ans = True
     while ans:
-        print("----Data Visualization of top 10 Countries---- \n 1.Line Chart-> Countries vs Total Medals \n 2.Bar Chart-> Countries vs Total Number of Gold Medals \n 3.Bar Chart-> Countries vs Total number of Silver Medal \n 4.Bar Chart-> Countries Total number of Bronze Medal \n 5.Histogram-> Countries getting Gold,Silver and Bronze in a given range \n 6.Exit to Main Menu")
-        ans = int(input("please enter your choice :  "))
+        console.print("-----#####-----", style="red1")
+        console.print("[green]-----Data Visualization of top 10 Countries-----[/] \n [dark_goldenrod]1.Line Chart-> Countries vs Total Medals[/] \n [sky_blue1]2.Bar Chart-> Countries vs Total Number of Gold Medals[/] \n [cyan3]3.Bar Chart-> Countries vs Total number of Silver Medal[/] \n [gray63]4.Bar Chart-> Countries Total number of Bronze Medal[/] \n [cyan1]5.Histogram-> Countries getting Gold,Silver and Bronze in a given range[/] \n [purple]6.Exit to Main Menu[/]")
+        console.print("-----#####-----", style="red1")
+        ans = int(colored_input(
+            "please enter your choice :  ", colorama.Fore.GREEN))
         if ans == 1:
             lchart1()
         elif ans == 2:
@@ -50,7 +76,7 @@ def dvisual():
         elif ans == 6:
             menu()
         else:
-            print("Invalid Choice. Try Again")
+            console.print("Invalid Choice. Try Again")
             continue
 
 
@@ -61,7 +87,8 @@ def lchart1():
     df1 = df.head(10)
     Countries = df1["Team"]
     TotalMedals = df1["TotalMedals"]
-    plt.plot(Countries, TotalMedals, linestyle=":", color="green", marker=".")
+    plt.plot(Countries, TotalMedals, linestyle=":",
+             color="green", marker=".", markerfacecolor="black")
     x = np.arange(len(Countries))
     plt.xticks(x, Countries, rotation=30)
     plt.xlabel("Country", fontsize=12, color="red")
@@ -98,7 +125,7 @@ def bchart2():
     Countries = df1["Team"]
     TotalSilver = df1["Silver"]
     plt.bar(x+0.25, TotalSilver, width=0.6,
-            label="Total Number of Silver Medals by top 10 Countries", color="silver")
+            label="Total Number of Silver Medals by top 10 Countries", color="lime")
     plt.xticks(x, Countries, rotation=30)
     plt.title("World Silver Medal ANalysis of Top 10 Countries",
               color="blue", fontsize=16)
@@ -146,83 +173,97 @@ def dhistogram():
 
 def danalysis():
     while True:
-        print("-----DataFrame Analysis-----")
-        print(" 1.Print Records of Top Countries In Terms Of Total Medal Won  \n 2.Print Records Of Top Countries In Terms Of Total Gold Medal Won \n 3.Print Records of Top Countries In Terms of Total Silver Medal Won \n 4.Print Records of Top Countries In Terms of Total Bronze Medal Won \n 5.Print Records of Bottom Most Countries In Terms of Medal Won \n 6.Print The General Information About The DataFrame used for Analysis \n 7.Describe The Structure Of The DataFrame used for analysis \n 8.Print The Data of Column Specified By User. \n 9.Print Maximum Value for Each Column In The DataFrame. \n 10.Display Gold,Silver,and Bronze medals won by a Specific Country \n 11.Back To The Main Menu")
-        x = int(input("Enter you Choice: "))
-        print(f"{x}. Giving Command to the Function ")
+        console.print("-----DataFrame Analysis-----", style="green4")
+        console.print("-----#####-----", style="red1")
+        console.print(" [dark_goldenrod]1.Print Records of Top Countries In Terms Of Total Medal Won[/]  \n [dark_orange3]2.Print Records Of Top Countries In Terms Of Total Gold Medal Won[/] \n [dark_khaki]3.Print Records of Top Countries In Terms of Total Silver Medal Won[/] \n [deep_pink4]4.Print Records of Top Countries In Terms of Total Bronze Medal Won[/] \n [thistle1]5.Print Records of Bottom Most Countries In Terms oF Medal Won[/] \n [sandy_brown]6.Print The General Information About The DataFrame used for Analysis[/] \n [plum1]7.Describe The Structure Of The DataFrame used for analysis[/] \n [indian_red1]8.Print The Data of Column Specified By User[indian_red1]. \n [dark_goldenrod]9.Print Maximum Value for Each Column In The DataFrame.[/] \n [dark_khaki]10.Display Gold,Silver,and Bronze medals won by a Specific Country[/] \n [purple]11.Back To The Main Menu[/]")
+        console.print("-----#####-----", style="red1")
+        x = int(colored_input("Enter you Choice: ", colorama.Fore.GREEN))
         df = pd.read_csv("WCDSV.csv")
         if x == 1:
             df = df.loc[:, ["Team", "TotalMedals"]]
-            nor = int(input("Enter the number of Records to be Displayed: "))
-            print(f"Top {nor} records of the DataFrame")
-            print("----####----")
-            print(df.head(nor))
-            print("----####----")
+            nor = int(colored_input(
+                "Enter the number of Records to be Displayed: "))
+            console.print(
+                f"Top {nor} records of the DataFrame", style="salmon1")
+            console.print("----####----", style="red1")
+            console.print(df.head(nor))
+            console.print("----####----", style="red1")
         elif x == 2:
             df = df.sort_values("Gold", ascending=False, ignore_index=True)
             df = df.loc[:, ["Team", "Gold"]]
-            nor = int(input("Enter the number of Records to be displayed : "))
-            print(f"Top {nor} records by total number of gold Medals")
-            print("----####----")
-            print(df.head(nor))
-            print("----####----")
+            nor = int(colored_input(
+                "Enter the number of Records to be displayed : "))
+            console.print(
+                f"Top {nor} records by total number of gold Medals", style="salmon1")
+            console.print("-----#####-----", style="red1")
+            console.print(df.head(nor))
+            console.print("-----#####-----", style="red1")
         elif x == 3:
             df = df.sort_values("Silver", ascending=False, ignore_index=True)
             df = df.loc[:, ["Team", "Silver"]]
-            nor = int(input("Enter the number of Records to be displayed : "))
-            print(f"Top {nor} record by total number of silver medals")
-            print("----####----")
-            print(df.head(nor))
-            print("----####----")
+            nor = int(colored_input(
+                "Enter the number of Records to be displayed : "))
+            console.print(
+                f"Top {nor} record by total number of silver medals", style="salmon1")
+            console.print("-----#####-----", style="red1")
+            console.print(df.head(nor))
+            console.print("-----#####-----", style="red1")
         elif x == 4:
             df = df.sort_values("Bronze", ascending=False, ignore_index=True)
             df = df.loc[:, ["Team", "Bronze"]]
-            nor = int(input("Enter the number of records to be displayed : "))
-            print(f"Top {nor} records by total number of bronze medal")
-            print("----####----")
-            print(df.head(nor))
-            print("----####----")
+            nor = int(colored_input(
+                "Enter the number of records to be displayed : "))
+            console.print(
+                f"Top {nor} records by total number of bronze medal", style="salmon1")
+            console.print("-----#####-----", style="red1")
+            console.print(df.head(nor))
+            console.print("-----#####-----", style="red1")
         elif x == 5:
             df = df.sort_values(
                 "TotalMedals", ascending=False, ignore_index=True)
-            nor = int(input("Enter the number of records to be displayed"))
+            nor = int(colored_input(
+                "Enter the number of records to be displayed: "))
             df = df.loc[:, ["Team", "TotalMedals"]]
-            print(f"Bottom {nor} records from the database")
-            print("----####----")
-            print(df.tail(nor))
-            print("----####----")
+            console.print(
+                f"Bottom {nor} records from the database", style="salmon1")
+            console.print("-----#####----", style="red1")
+            console.print(df.tail(nor))
+            console.print("-----#####----", style="red1")
         elif x == 6:
-            print("Information of the Database")
-            print("----####----")
-            print(df.info())
-            print("----####----")
+            console.print("Information of the Database", style="green1")
+            console.print("-----#####----", style="red1")
+            console.print(df.info())
+            console.print("-----#####-----", style="red1")
         elif x == 7:
-            print("Describing the basic characteristics of the dataframe ")
-            print("----####----")
-            print(df.describe())
-            print("----####----")
+            console.print(
+                "Describing the basic characteristics of the dataframe ", style="green1")
+            console.print("-----#####-----", style="red1")
+            console.print(df.describe())
+            console.print("-----#####-----", style="red1")
         elif x == 8:
-            print(f"Name of the column -> {df.columns()}")
-            clm = eval(input("Enter the column name in the list"))
-            print("----####----")
-            print(df[clm])
-            print("----####----")
+            console.print(
+                f"Name of the column -> {df.columns}", style="green1")
+            clm = str(colored_input("Enter the column name in the list: "))
+            console.print("-----#####-----", style="red1")
+            console.print(df[clm])
+            console.print("-----#####-----", style="red1")
         elif x == 9:
-            print(f"Maximum value for each column")
-            print("----####----")
-            print(df.max())
-            print("----####----")
+            console.print(f"Maximum value for each column", style="green1")
+            console.print("----####----", style="red1")
+            console.print(df.max())
+            console.print("----####----", style="red1")
         elif x == 10:
-            print("NAme of all participating in  world Games")
-            print("----####----")
-            print(df["Team"].values)
-            print("----####----")
-            cntry = eval(input(
+            console.print(
+                "Name of all participating in  world Games", style="green1")
+            console.print("-----#####-----", style="red1")
+            console.print(df["Team"].values)
+            console.print("-----#####-----", style="red1")
+            cntry = eval(colored_input(
                 "Enter name of a Country / Countries in the form of like this -['India']:"))
             for cnt in cntry:
-                print(df.loc[df["Team"] == cnt, [
-                      "Team", "Gold", "Silver", "Bronze"]])
-                print("----####----")
+                console.print(df.loc[df["Team"] == cnt, [
+                    "Team", "Gold", "Silver", "Bronze"]])
+                console.print("-----#####-----", style="red1")
         elif x == 11:
             menu()
             break
@@ -232,58 +273,72 @@ def dmanup():
     df = pd.read_csv("WCDSV.csv")
     ans = True
     while ans:
-        print("----Data Manipulation----")
-        print(" 1.Inserting a Row \n 2.Deleting a Row \n 3.Inserting a column \n 4.Deleting a column \n 5.Renaming a column \n 6.Exit to Main Menu")
-        ans = int(input("Enter Your Choice: "))
+        console.print("-----Data Manipulation-----", style="green4")
+        console.print("-----#####-----", style="red1")
+        console.print(
+            " [dark_sea_green]1.Inserting a Row[/] \n [sky_blue2]2.Deleting a Row[/] \n [pale_turquoise1]3.Inserting a column[/] \n [orchid]4.Deleting a column[/] \n [gold3]5.Renaming a column[/] \n [purple]6.Exit to Main Menu[/]")
+        console.print("-----#####-----", style="red1")
+        ans = int(colored_input("Enter Your Choice: ", colorama.Fore.GREEN))
         pd.set_option("display.max_columns", None)
         if ans == 1:
-            print("Enter the input in the Following Format")
+            console.print("Enter the colored_input in the Following Format")
             col = df.columns
-            print(col)
-            lst = eval(input("Enter the row values in list: "))
+            console.print(col)
+            lst = eval(colored_input("Enter the row values in list: "))
             sr = pd.Series(lst, index=col)
             row_df1 = pd.DataFrame([sr])
             df = pd.concat([row_df1, df], ignore_index=True)
-            print(df)
-            print("Row Added Successfully")
-            print("----####----")
+            console.print(df)
+            console.print("Row Added Successfully")
+            console.print("----####----")
         elif ans == 2:
-            inp = int(input("Enter the row's index you want to delete: "))
+            inp = int(colored_input(
+                "Enter the row's index you want to delete: "))
             df1 = df.drop(inp, axis=0)
-            print("----####----")
-            print(f"DataFrame after row index number {inp} is deleted")
-            print("----####----")
-            print(df1)
-            print("----####----")
+            console.print("----####----")
+            console.print(f"DataFrame after row index number {inp} is deleted")
+            console.print("----####----")
+            console.print(df1)
+            console.print("----####----")
         elif ans == 3:
             pd.set_option("display.width", 500)
             pd.set_option("display.max_columns", None)
-            clname = str(input("Enter the Column Name"))
+            clname = str(colored_input("Enter the Column Name : "))
             inp = int(
-                input("Enter the Column index \n where you want to insert the column: "))
+                colored_input("Enter the Column index \n where you want to insert the column: "))
             df.insert(inp, clname, "Nan")
-            print(df)
-            print("----####----")
+            console.print(df)
+            console.print("----####----")
         elif ans == 4:
             pd.set_option("display.width", 500)
             pd.set_option("display.max_columns", None)
-            print("DataFrame before deleting the column")
-            print(df)
-            inp = input("Enter the column name you want to delete: ")
+            console.print("DataFrame before deleting the column")
+            console.print(df)
+            inp = colored_input("Enter the column name you want to delete: ")
             df = df.drop(inp, axis=1)
-            print(f"DataFrame after deleting the column {inp} : ")
-            print(df)
-            print("----####----")
+            console.print(f"DataFrame after deleting the column {inp} : ")
+            console.print(df)
+            console.print("----####----")
         elif ans == 5:
             pd.set_option("display.width", 500)
             pd.set_option("display.max_columns", None)
-            print("----####----")
-            print("DataFrame before changing the column name's")
-            print("----####----")
-            print(df)
-            print("----####----")
+            console.print("----####----")
+            console.print("DataFrame before changing the column name's")
+            console.print("----####----")
+            console.print(df)
+            console.print("----####----")
+            oldcm = str(
+                colored_input("Enter the name of the column you want to change: "))
+            newcm = str(colored_input("Enter the new name of the column: "))
+            df = df.rename(columns={oldcm: newcm})
+            console.print("-----#####-----", style="red1")
+            console.print("DataFrame after changing the column name's")
+            console.print("-----#####-----", style="red1")
+            console.print(df)
+            console.print("----#####-----", style="red1")
         elif ans == 6:
-            print("Sending command to the command center >>>>> Done !!!")
+            console.print(
+                "Sending command to the command center >>>>> Done !!!")
             menu()
 
 
