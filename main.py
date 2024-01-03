@@ -229,7 +229,7 @@ def danalysis():
         elif x == 6:
             console.print("Information of the Database", style="green1")
             console.print("-----#####----", style="red1")
-            console.print(df.info(),style="sandy_brown")
+            console.print(df.info(), style="sandy_brown")
             console.print("-----#####-----", style="red1")
         elif x == 7:
             console.print(
