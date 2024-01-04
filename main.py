@@ -37,11 +37,11 @@ def menu():
     console.print("-----#####-----", style="red1")
     inp = int(colored_input(f"{RED}Enter you choice: ", colorama.Fore.RED))
     if inp == 1:
-        dvisual()
+        visual()
     elif inp == 2:
-        danalysis()
+        analysis()
     elif inp == 3:
-        dmanup()
+        operations()
     elif inp == 4:
         ex = str(colored_input(
             f"{RED}Are you sure you want to exit ? (y or n): ", colorama.Fore.RED))
@@ -52,7 +52,7 @@ def menu():
             menu()
 
 
-def dvisual():
+def visual():
     ans = True
     while ans:
         console.print("-----#####-----", style="red1")
@@ -61,15 +61,15 @@ def dvisual():
         ans = int(colored_input(
             f"{RED}please enter your choice :  ", colorama.Fore.RED))
         if ans == 1:
-            lchart1()
+            chart1()
         elif ans == 2:
-            bchart1()
+            chart2()
         elif ans == 3:
-            bchart2()
+            chart3()
         elif ans == 4:
-            bchart3()
+            chart4()
         elif ans == 5:
-            dhistogram()
+            histogram()
         elif ans == 6:
             menu()
         else:
@@ -77,7 +77,7 @@ def dvisual():
             continue
 
 
-def lchart1():
+def chart1():
     df = pd.read_csv("WCDSV.csv")
     df.sort_values(by="TotalMedals", ascending=True, inplace=True)
     df = df.loc[:, ["Team", "TotalMedals"]]
@@ -95,7 +95,7 @@ def lchart1():
     plt.show()
 
 
-def bchart1():
+def chart2():
     df = pd.read_csv("WCDSV.csv")
     df.sort_values("Gold", ascending=True)
     df1 = df.head(10)
@@ -114,7 +114,7 @@ def bchart1():
     plt.show()
 
 
-def bchart2():
+def chart3():
     df = pd.read_csv("WCDSV.csv")
     df = df.sort_values("Silver", ascending=True)
     df1 = df.tail(10)
@@ -133,7 +133,7 @@ def bchart2():
     plt.show()
 
 
-def bchart3():
+def chart4():
     df = pd.read_csv("WCDSV.csv")
     df = df.sort_values("Bronze", ascending=True)
     df1 = df.tail(10)
@@ -152,7 +152,7 @@ def bchart3():
     plt.show()
 
 
-def dhistogram():
+def histogram():
     df = pd.read_csv("WCDSV.csv")
     g = df["Gold"]
     s = df["Silver"]
@@ -168,7 +168,7 @@ def dhistogram():
     plt.show()
 
 
-def danalysis():
+def analysis():
     while True:
         console.print("-----DataFrame Analysis-----", style="green4")
         console.print("-----#####-----", style="red1")
@@ -267,7 +267,7 @@ def danalysis():
             break
 
 
-def dmanup():
+def operations():
     df = pd.read_csv("WCDSV.csv")
     ans = True
     while ans:
