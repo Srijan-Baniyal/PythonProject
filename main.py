@@ -235,7 +235,7 @@ def analysis():
             console.print(
                 "Describing the basic characteristics of the dataframe ", style="green1")
             console.print("-----#####-----", style="red1")
-            console.print(df.describe())
+            console.print(df.describe(), style="sandy_brown")
             console.print("-----#####-----", style="red1")
         elif x == 8:
             console.print(
@@ -280,9 +280,11 @@ def operations():
             f"{RED}Enter Your Choice: ", colorama.Fore.RED))
         pd.set_option("display.max_columns", None)
         if ans == 1:
-            console.print("Enter the colored_input in the Following Format")
+            console.print(
+                "Enter the input in the Following Format", style="cyan1")
             col = df.columns
-            console.print(col)
+            console.print(
+                "['Country_Name','Gold_Medal','Silver_medal','Bronze_Medal','Total_Medals']")
             lst = eval(colored_input(
                 f"{RED}Enter the row values in list: ", colorama.Fore.RED))
             sr = pd.Series(lst, index=col)
@@ -290,63 +292,78 @@ def operations():
             df = pd.concat([row_df1, df], ignore_index=True)
             console.print(df)
             df.to_csv("WCDSV.csv", index=False)
-            console.print("Row Added Successfully")
-            console.print("----####----")
+            console.print("Row Added Successfully !! ", style="green1")
+            console.print(
+                "ALSO UPDATED IN THE CSV FILE \nCHECK OUT THE CSV FILE", style="yellow2")
         elif ans == 2:
             inp = int(colored_input(
                 f"{RED}Enter the row's index you want to delete: ", colorama.Fore.RED))
             df1 = df.drop(inp, axis=0)
             df1.to_csv("WCDSV.csv", index=False)
             console.print("----####----")
-            console.print(f"DataFrame after row index number {inp} is deleted")
-            console.print("----####----")
+            console.print(
+                f"DataFrame after row index number {inp} is deleted", style="green1")
+            console.print("----####----", style="red1")
             console.print(df1)
-            console.print("----####----")
+            console.print(
+                "ALSO UPDATED IN THE CSV FILE \nCHECK OUT THE CSV FILE", style="yellow2")
+            console.print("----####----", style="red1")
         elif ans == 3:
             pd.set_option("display.width", 500)
             pd.set_option("display.max_columns", None)
             clname = str(colored_input(
-                f"Enter the Column Name : ", colorama.Fore.RED))
+                f"{RED}Enter the Column Name : ", colorama.Fore.RED))
             inp = int(
                 colored_input(f"{RED}Enter the Column index \n where you want to insert the column: ", colorama.Fore.RED))
             df.insert(inp, clname, "Nan")
             console.print(df)
             df.to_csv("WCDSV.csv", index=False)
-            console.print("----####----")
+            console.print(
+                "ALSO UPDATED IN THE CSV FILE \nCHECK OUT THE CSV FILE", style="yellow2")
+            console.print("----####----", style="red1")
         elif ans == 4:
             pd.set_option("display.width", 500)
             pd.set_option("display.max_columns", None)
-            console.print("DataFrame before deleting the column")
+            console.print("DataFrame before deleting the column",
+                          style="green1")
             console.print(df)
             inp = colored_input(
                 f"{RED}Enter the column name you want to delete: ", colorama.Fore.RED)
             df = df.drop(inp, axis=1)
-            console.print(f"DataFrame after deleting the column {inp} : ")
+            console.print(
+                f"DataFrame after deleting the column {inp} : ", style="green1")
             console.print(df)
             df.to_csv("WCDSV.csv", index=False)
-            console.print("----####----")
+            console.print(
+                "ALSO UPDATED IN THE CSV FILE \nCHECK OUT THE CSV FILE", style="yellow2")
+            console.print("----####----", style="red1")
         elif ans == 5:
             pd.set_option("display.width", 500)
             pd.set_option("display.max_columns", None)
-            console.print("----####----")
-            console.print("DataFrame before changing the column name's")
-            console.print("----####----")
+            console.print("----####----", style="red1")
+            console.print(
+                "DataFrame before changing the column name's", style="green1")
+            console.print("----####----", style="red1")
             console.print(df)
-            console.print("----####----")
+            console.print("----####----", style="red1")
             oldcm = str(
-                colored_input(f"{RED}Enter the name of the column you want to change: ", colorama.Fore.GREEN))
+                colored_input(f"{RED}Enter the name of the column you want to change: ", colorama.Fore.RED))
             newcm = str(colored_input(
-                f"{RED}Enter the new name of the column: ", colorama.Fore.GREEN))
+                f"{RED}Enter the new name of the column: ", colorama.Fore.RED))
             df = df.rename(columns={oldcm: newcm})
             console.print("-----#####-----", style="red1")
-            console.print("DataFrame after changing the column name's")
+            console.print(
+                "DataFrame after changing the column name's", style="green1")
             console.print("-----#####-----", style="red1")
             console.print(df)
             df.to_csv("WCDSV.csv", index=False)
+            console.print(
+                "ALSO UPDATED IN THE CSV FILE \nCHECK OUT THE CSV FILE", style="yellow2")
             console.print("----#####-----", style="red1")
         elif ans == 6:
             console.print(
-                "Sending command to the command center >>>>> Done !!!")
+                "Sending command to the command center >>>>> Done !!!", style="green4")
+            console.print("-----#####-----", style="red1")
             menu()
 
 
