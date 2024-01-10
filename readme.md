@@ -55,20 +55,35 @@ Follow the command-line interface prompts to manipulate the dataset or to visual
 
 ## Usage
 
-### Data Manipulation
+# Data Visualization
+1. **Line Chart:** Countries vs Total Medals
+2. **Bar Chart:** Countries vs Total number of Gold Medals
+3. **Bar Chart:** Countries vs Total number of Silver Medals
+4. **Bar Chart:** Countries vs Total number of Bronze Medals
+5. **Histograms:** Countries Getting Gold, Silver, and Bronze in each Range.
+6. **Exit to Main Menu**
 
-- **Insert Rows**: Select the insert row option and enter the data for the new row.
-- **Delete Rows**: Choose the delete row option and specify the index of the row to be removed.
-- **Insert Columns**: Choose the insert column option and provide the name and data for the new column.
-- **Delete Columns**: Select the delete column option and enter the name of the column to be removed.
+# Data Analysis
+1. **Print Records:** Top countries in terms of total medals won.
+2. **Print Records:** Top countries in terms of total gold medals won.
+3. **Print Records:** Top countries in terms of total silver medals.
+4. **Print Records:** Top countries in terms of total bronze medals won.
+5. **Print Records:** Bottom most countries in terms of medals won.
+6. **Print Information:** General information about the data frame used for analysis.
+7. **Describe Structure:** Describe the structure of the data frame used for analysis.
+8. **Print Column Data:** Print the data of the column specified by the user.
+9. **Print Maximum Values:** Display maximum values for each column in the data frame.
+10. **Display Medals:** Display gold, silver, bronze medals won by a specific country.
+11. **Go back to Main Menu**
 
-### Visualization
+# Data Manipulation
+1. **Insert Row**
+2. **Delete Row**
+3. **Insert Column**
+4. **Delete Column**
+5. **Rename Column**
+6. **Exit to Main Menu**
 
-Select the visualization option from the main menu to generate histograms and analyze the medal distribution in the dataset.
-
-## Documentation
-
-For comprehensive documentation on modules and usage, please see the `/docs` directory within the project.
 
 ## Testing
 
