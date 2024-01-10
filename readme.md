@@ -22,9 +22,6 @@ Before you begin, make sure you have Python 3.6 or higher installed, as well as 
 Clone the repository and install the required dependencies:
 
 ------------------------------------------------------------------------------------------------------
-git clone https://github.com/your-username/your-project-repository.git
-cd your-project-repository
-pip install -r requirements.txt
 
 ## Quick Start
 
