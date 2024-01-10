@@ -33,7 +33,7 @@ To get the application up and running on your local machine, follow these steps:
 1. Clone the project repository:
 
     ```shell
-    git clone https://github.com/your-username/your-project-repository.git
+    git clone https://github.com/Srijan-Baniyal/PythonProject
     ```
 
 2. Navigate to the project directory:
